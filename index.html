@@ -1,0 +1,2068 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Bellanger | Advanced Analytics Consultant </title>
+    <meta name="description" content="Advanced Data Analyst specializing in marketing campaign profitability. Stop burning ad budgets and guarantee ROI with clean data, predictive modeling, and emotional intelligence.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WGTPLBM5BY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-WGTPLBM5BY');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:wght@600;700;800&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slateDark: '#273A4C',
+                        blueClassic: '#245F90',
+                        cyanTech: '#5DD7E0',
+                        goldAccent: '#FADB91',
+                        grayLight: '#A6A9B0',
+                        bgDarker: '#1a2733'
+                    },
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        subheading: ['"Lora"', 'serif'],
+                        mono: ['"Roboto Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #273A4C; 
+            color: #A6A9B0; 
+            font-family: 'Lora', serif;
+        }
+
+        h1, h2, h3, h4, h5, .font-heading {
+            font-family: 'Playfair Display', serif;
+            color: white;
+        }
+
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(93, 215, 224, 0.4);
+        }
+
+        .skill-badge {
+            background-color: rgba(36, 95, 144, 0.15);
+            border: 1px solid #245F90;
+            color: #5DD7E0;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #FADB91;
+            color: #273A4C;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(250, 219, 145, 0.3);
+        }
+
+        .btn-secondary {
+            border: 1px solid #5DD7E0;
+            color: #5DD7E0;
+            font-family: 'Roboto Mono', monospace;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(93, 215, 224, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .navbar {
+            background: rgba(39, 58, 76, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(166, 169, 176, 0.1);
+        }
+
+        .project-card {
+            background: rgba(26, 39, 51, 0.5);
+            border: 1px solid rgba(166, 169, 176, 0.1);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            border-color: #5DD7E0;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .content-block h3 {
+            color: #FADB91;
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(166, 169, 176, 0.2);
+            padding-bottom: 0.5rem;
+        }
+        .content-block p {
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
+        }
+        .content-block ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .content-block li {
+            margin-bottom: 0.5rem;
+        }
+        .content-block strong {
+            color: white;
+        }
+        
+        .chart-wrapper {
+            background: rgba(36, 95, 144, 0.1);
+            border: 1px solid rgba(93, 215, 224, 0.2);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin: 2.5rem auto;
+            max-width: 48rem; /* Equivalent to max-w-3xl to keep it elegant and readable */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .canvas-container {
+            position: relative;
+            height: 350px; /* Hauteur fixe qui empêche l'allongement infini du graphique */
+            width: 100%;
+        }
+
+        /* Scroll Reveal Fade-in effect */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-cyanTech selection:text-slateDark">
+
+    <nav class="navbar fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="showHome()">
+                    <img src="logo.png" alt="Brain Circuit Logo" class="h-12 w-12 transition-transform duration-500 group-hover:scale-110 object-contain">
+                    <span class="font-heading text-xl tracking-wider text-white">JOHN<span class="text-cyanTech">BELLANGER</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center text-sm font-mono">
+                    <a href="#" onclick="showHome(); setTimeout(()=>document.getElementById('about').scrollIntoView(), 100);" class="text-grayLight hover:text-cyanTech transition-colors">/ About Me</a>
+                    <a href="#" onclick="showHome(); setTimeout(()=>document.getElementById('portfolio').scrollIntoView(), 100);" class="text-grayLight hover:text-cyanTech transition-colors">/ Projects</a>
+                    <a href="https://calendar.app.google/gEpmJ1dFdaxN9EJo8" target="_blank" class="px-5 py-2 border border-goldAccent text-goldAccent rounded hover:bg-goldAccent hover:text-slateDark transition-colors">Partner With Me</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="main-view">
+        
+        <section class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden">
+            <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-blueClassic rounded-full mix-blend-screen filter blur-[100px] opacity-30"></div>
+            <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-72 h-72 bg-cyanTech rounded-full mix-blend-screen filter blur-[100px] opacity-20"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 text-center lg:text-left reveal">
+                        <p class="text-cyanTech font-mono mb-4 text-sm tracking-widest uppercase flex items-center justify-center lg:justify-start gap-2">
+                            <span class="w-8 h-px bg-cyanTech"></span>
+                            From Raw Data to Profit
+                            <span class="w-8 h-px bg-cyanTech"></span>
+                        </p>
+                        <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading leading-tight mb-6">
+                            Consultant Advanced <br>
+                            <span class="italic text-goldAccent text-4xl md:text-5xl">Analytics</span>
+                        </h1>
+                        <p class="mt-4 text-xl text-grayLight max-w-3xl mx-auto lg:mx-0 mb-10 leading-relaxed">
+                            Stop letting your clients' ad budgets go up in smoke. I help marketing agencies guarantee profitable growth through clean data, predictive modeling, and deep emotional intelligence.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 font-mono">
+                            <a href="#portfolio" class="btn-primary px-8 py-4 rounded shadow-lg text-sm tracking-wide uppercase">
+                                Explore Portfolio
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 relative flex justify-center lg:justify-end reveal">
+                        <div class="relative group max-w-md lg:max-w-none w-full">
+                            <!-- Glow effect behind the image -->
+                            <div class="absolute -inset-1.5 bg-gradient-to-r from-cyanTech to-blueClassic rounded-2xl blur opacity-35 group-hover:opacity-50 transition duration-1000 group-hover:duration-300"></div>
+                            <img src="hero_analytics_concept.png" alt="Advanced Analytics Visualization" class="relative rounded-2xl border border-white/10 shadow-2xl w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 border-y border-grayLight/10 relative bg-bgDarker">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    <div class="lg:col-span-8 reveal">
+                        <h2 class="text-3xl font-heading mb-6 border-l-4 border-cyanTech pl-4">The Mind Behind The <span class="text-cyanTech text-glow">Data</span></h2>
+                        <div class="text-grayLight space-y-5 leading-relaxed">
+                            <p>I am a <strong class="text-white">Consultant Advanced Analytics</strong>. I am American, currently living in France, and fully bilingual (English/French). My primary mission is to help marketing agencies prevent the burning of their clients' advertising budgets and optimize their investments through modeled predictions and sentiment analysis.</p>
+                            
+                            <p>My motivation for this work is deeply personal. My father was a <strong class="text-goldAccent">successful entrepreneur</strong>, and upon his passing, he lost everything due to bad business decisions. That experience fundamentally shaped my drive: <strong class="text-white">I want to help businesses avoid losing money because of poor decision-making.</strong></p>
+                            
+                            <p>Before transitioning to data, I was an acting coach for over 20 years, specializing in the <strong class="text-cyanTech">Meisner technique</strong>. This background gave me a unique superpower: <strong class="text-white">Emotional Intelligence.</strong> I don't just look at numbers; I understand the human behavior and psychology driving those numbers. My philosophy is that AI will never replace the emotional intelligence of a human being. AI hallucinates and makes errors; it requires human oversight, empathy, and intuition to ensure the insights are grounded in reality. That is why I am a defender of the human before the AI.</p>
+                            
+                            <p>Furthermore, my past background as a jurist instilled in me a rigorous methodology and a deep understanding of the legal implications of data manipulation, ensuring absolute compliance.</p>
+
+                            <p>Finally, I work with a long-term vision to ensure absolute data reliability. Beyond performing "deep dives" to cut unprofitable ads, I conduct inventory and financial analyses (such as evaluating the Working Capital Requirement - BFR) to ensure that scaling advertising campaigns won't cause cash flow issues for the client. Not only do I help clients optimize their investments, but <strong class="text-goldAccent">I also strengthen the marketing agency's brand image and trust with their clients.</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-4 space-y-6 reveal">
+                        <div class="bg-slateDark p-8 rounded-2xl border border-cyanTech/20 shadow-xl">
+                            <h3 class="text-xl text-white font-heading mb-4 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-goldAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                Tech Stack
+                            </h3>
+                            <div class="flex flex-wrap gap-2 font-mono">
+                                <span class="skill-badge px-3 py-1 rounded text-xs">BigQuery / SQL</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">R Programming</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Looker / Data Studio</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Tableau</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Google Sheets API</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Google Docs</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Google Slides</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Google Analytics 4</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Google Search Console</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Facebook Ads</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Google Ads</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slateDark p-8 rounded-2xl border border-cyanTech/20 shadow-xl">
+                            <h3 class="text-xl text-white font-heading mb-4 flex items-center gap-2">
+                                <svg class="w-5 h-5 text-goldAccent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                                Certifications
+                            </h3>
+                            <ul class="space-y-2 font-mono text-xs text-grayLight">
+                                <li><strong class="text-white">Google:</strong> Data Analytics Professional</li>
+                                <li><strong class="text-white">Google:</strong> Analytics Certificate 2024</li>
+                                <li><strong class="text-white">AnalystBuilder:</strong> MySQL & Tableau 2025</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 reveal">
+                    <p class="text-cyanTech font-mono text-sm uppercase tracking-wider mb-2">My Projects</p>
+                    <h2 class="text-4xl md:text-5xl font-heading mb-4">Case Studies</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Cards -->
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-facebook')">
+                        <div class="h-48 overflow-hidden relative border-b border-white/5">
+                            <img src="fb_ads_concept.png" alt="Facebook Ads Analysis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-cyanTech font-mono text-xs mb-2">Facebook Ads</div>
+                            <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">Negative ROAS Analysis</h3>
+                            <p class="text-sm text-grayLight mb-6 flex-grow">Understanding why increasing ad spending was not translating into revenue. Fixing attribution gaps and strategic timing.</p>
+                            <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-google')">
+                        <div class="h-48 overflow-hidden relative border-b border-white/5">
+                            <img src="google_ads_concept.png" alt="Google Ads Predictions" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-cyanTech font-mono text-xs mb-2">Google Ads & Predictions</div>
+                            <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">Targeted Advertising Growth</h3>
+                            <p class="text-sm text-grayLight mb-6 flex-grow">Identifying high-potential segments to optimize campaigns. Using R to build predictive models for Electronics vs Home categories.</p>
+                            <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-apple')">
+                        <div class="h-48 overflow-hidden relative border-b border-white/5">
+                            <img src="apple_cash_concept.png" alt="Apple Corporate Finance" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-cyanTech font-mono text-xs mb-2">Corporate Finance</div>
+                            <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">Apple: Cash Management</h3>
+                            <p class="text-sm text-grayLight mb-6 flex-grow">Assessment of point-in-time cash position and strategic flexibility. Evaluating Working Capital Requirement and liquidity.</p>
+                            <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-sentiment')">
+                        <div class="h-48 overflow-hidden relative border-b border-white/5">
+                            <img src="sentiment_analysis_concept.png" alt="Sentiment Analysis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-cyanTech font-mono text-xs mb-2">Natural Language Processing</div>
+                            <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">Back Pain Sentiment Analysis</h3>
+                            <p class="text-sm text-grayLight mb-6 flex-grow">Transforming the voice of the customer into high-performance advertising by analyzing Reddit conversations using R.</p>
+                            <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-seo')">
+                        <div class="h-48 overflow-hidden relative border-b border-white/5">
+                            <img src="seo_drop_concept.png" alt="SEO Traffic Drop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-cyanTech font-mono text-xs mb-2">Search Engine Optimization</div>
+                            <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">SEO Traffic Drop Diagnosis</h3>
+                            <p class="text-sm text-grayLight mb-6 flex-grow">Investigating a sudden drop in organic traffic on mobile devices using linear regression and Core Web Vitals correlations.</p>
+                            <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
+                        </div>
+                    </div>
+
+                    <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-expat')">
+                        <div class="h-48 overflow-hidden relative border-b border-white/5">
+                            <img src="expat_dashboard_concept.png" alt="Expatriation Dashboard" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-cyanTech font-mono text-xs mb-2">Personal Finance & BI</div>
+                            <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">Expatriation Dashboard</h3>
+                            <p class="text-sm text-grayLight mb-6 flex-grow">Building an interactive Google Sheets dashboard with live API data to simulate an expat move and track financial independence.</p>
+                            <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="project-views" class="pt-24 pb-20">
+
+        <!-- 1. Facebook Ads -->
+        <div id="proj-facebook" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to all projects
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Facebook Ads Campaign Performance</h2>
+            <div class="flex flex-wrap gap-4 mb-10">
+                <a href="https://lookerstudio.google.com/reporting/1120487c-c49e-4618-9739-b5d790e23927" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Dashboard</a>
+                <a href="https://docs.google.com/presentation/d/1yxA_oKfSm5SF78337sbnSEwbaiwz8KtdCGxRAx8Km24/edit?usp=sharing" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">View Presentation</a>
+                <a href="https://github.com/JohnBellanger/Cleaning_Data_With_BigQuery/blob/main/Project_Facebook_Ads.sql" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">SQL Code</a>
+            </div>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>1. Context and Objective of the Stakeholder</h3>
+                <p>The objective of this mission, at the request of my stakeholder, was to understand why increasing advertising spending on Facebook Ads was not translating into equivalent growth in the company's overall revenue. The stakeholder noted that profitability appeared to be at risk, particularly in certain quarters.</p>
+                <p>The hypothesis raised was that traffic from Facebook Ads was of low quality, leading to overestimation of conversions by the platform itself, a low conversion rate on the site, and a low value per customer.</p>
+
+                <h3>2. The Problem</h3>
+                <p>The analysis confirmed the stakeholder's concerns: an overall low ROAS (Return On Ad Spend) for Facebook traffic, and a conversion rate for this same channel that is the lowest of all acquisition channels. A particularly negative ROAS was observed in December, signaling a major underperformance.</p>
+                
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">ROAS vs CPA Trajectory</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The analysis confirmed the stakeholder's concerns: an overall low ROAS for Facebook traffic, and a conversion rate for this same channel that is the lowest of all acquisition channels. A particularly negative ROAS was observed in December, signaling a major underperformance.</p>
+                    <div class="canvas-container">
+                        <canvas id="fbRoasChart"></canvas>
+                    </div>
+                </div>
+
+                <h3>3. The Method of Analysis</h3>
+                <p>I adopted a rigorous methodology in several phases to respond to this problem:</p>
+                <ul>
+                    <li><strong>Data cleaning:</strong> I duplicated the raw tables from Facebook Ads and Google Analytics 4 to work on copies on BigQuery. I then standardized date formats, handled missing values, and converted expense columns to a numeric format. Used LOWER() and TRIM() to ensure naming consistency.</li>
+                    <li><strong>Analyse Descriptive:</strong> I created a flat table by joining the cleaned data. Explored data to find:</li>
+                    <li><em>Location of the anomaly:</em> Toronto in Canada was particularly problematic in terms of profitability.</li>
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">ROAS by City (Toronto Anomaly)</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">I analyzed performance by country and city. I observed that the city of Toronto in Canada was particularly problematic in terms of profitability.</p>
+                    <div class="canvas-container">
+                        <canvas id="fbCityRoasChart"></canvas>
+                    </div>
+                </div>
+                    <li><em>The month affected:</em> Drastic drop in performance in December, with ROAS turning negative.</li>
+                    <li><em>Campaign affected:</em> "Valentines_Promo" and "Post-Holiday-Sale" were showing very low profitability.</li>
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Campaign Profitability Comparison (ROAS)</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">I reviewed the campaign performance. I noticed that two campaigns, "Valentines_Promo" and "Post-Holiday-Sale," were showing very low profitability.</p>
+                    <div class="canvas-container">
+                        <canvas id="fbCampaignRoasChart"></canvas>
+                    </div>
+                </div>
+                    <li><em>Attribution:</em> Facebook's attribution model overestimated its conversions, attributing 51% more to itself than GA4 did.</li>
+                </ul>
+
+                <h3>4. Diagnostic Analysis</h3>
+                <p>I formulated several hypotheses to understand the cause:</p>
+                <ul>
+                    <li><strong>Hypothesis 1 (Strategy):</strong> Ad strategy not adapted to target audience.</li>
+                    <li><strong>Hypothesis 2 (Execution):</strong> Incorrect setup/optimization (targeting, high bids).</li>
+                    <li><strong>Hypothesis 3 (Customer):</strong> Saturated or un-receptive audience in Toronto.</li>
+                    <li><strong>Hypothesis 4 (Technical):</strong> Pixel/GA4 tracking malfunction.</li>
+                    <li><strong>Hypothesis 5 (Content):</strong> Creatives/Products not attractive enough.</li>
+                    <li><strong>Hypothesis 6 & 7:</strong> Competition / Seasonality & Economic factors.</li>
+                </ul>
+                <p>I focused on <strong>Hypothesis 1</strong> because the analysis revealed a glaring anomaly.</p>
+
+                <h3>5. Validation of the problem</h3>
+                <p>Looking at the data for the "Post-Holiday-Sale" campaign, which launched in December 2024, I had an "Aha Moment." The campaign's name clearly indicates that it should have been launched <em>after the holiday season</em>. The data confirmed this error: the campaign was executed at the wrong time, wasting significant budget at a time when the offer was not relevant. This simple observation helped explain the entire underperformance.</p>
+
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Attribution Gap: FB vs GA4 Conversions</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">I quantified Facebook's contribution to the total acquisition and measured the attribution gap. I found that Facebook's attribution model overestimated its conversions, attributing 51% more to itself than GA4.</p>
+                    <div class="canvas-container">
+                        <canvas id="fbAttributionChart"></canvas>
+                    </div>
+                </div>
+
+                <h3>6. Recommendations & Quantified Impact</h3>
+                <ul>
+                    <li><strong>Immediate Action:</strong> Pause or adjust poorly timed campaigns to avoid budget waste.</li>
+                    <li><strong>Optimization:</strong> Review the annual marketing calendar with clear launch dates.</li>
+                    <li><strong>Preventive Action:</strong> Implement a double validation system for campaign launches.</li>
+                </ul>
+                <p><strong>Prediction:</strong> Based on the performance of a properly planned winter sales campaign (ROAS 7.19), launching the "Post-Holiday-Sale" at the right time could have generated <strong>$3,240 additional income</strong> and about 56 conversions for the same budget. This correction would have transformed a loss into a substantial profit.</p>
+
+                <h3>7. Demonstrated Technical Skills</h3>
+                <ul>
+                    <li><strong>Databases & SQL Logic:</strong> Joined Facebook Ads and GA4 to create a flat table, ensuring data standardization.</li>
+                    <li><strong>Statistical & Predictive Analysis:</strong> Scenario modeling to provide a quantifiable forecast ($3,240 additional revenue).</li>
+                    <li><strong>Data visualization:</strong> Used Google Sheets to explore anomalies and support conclusions.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 2. Google Ads -->
+        <div id="proj-google" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to all projects
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Google Ads: Prediction on Ads</h2>
+            <div class="flex flex-wrap gap-4 mb-10">
+                <a href="https://lookerstudio.google.com/reporting/24547edb-a7bc-43ce-8b1a-3c13be80441a" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Dashboard</a>
+                <a href="https://docs.google.com/presentation/d/1x4niDpoCVTLhszea3MbT94sqgjKG8PII11j4BUaIG4g/edit?usp=sharing" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">View Presentation</a>
+                <a href="https://github.com/JohnBellanger/Cleaning_Data_With_BigQuery/blob/main/Project_Google_Ads_2.sql" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">SQL Cleaning</a>
+                <a href="https://github.com/JohnBellanger/R_Programming/blob/main/Project_Google_Ads_Prediction.R" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">R Prediction</a>
+            </div>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>1. Objective</h3>
+                <p>Identify high-potential audience segments to optimize advertising campaigns and predict sales. The central question that guided my work was: “Which audience segments have the highest conversion potential?”</p>
+
+                <h3>2. Data Transformation Methodology</h3>
+                <p>Working with raw, heterogeneous data on BigQuery and R:</p>
+                <ul>
+                    <li><strong>Cleaning and Standardization:</strong> Standardized formats for dates and texts ("google/cpc" and "Google/CPC" unified). Used SAFE.PARSE_DATE and REGEXP_REPLACE to remove symbols like '$' to make strings computable.</li>
+                    <li><strong>Creating a Flat Table:</strong> Joined acquisition and transaction tables into a single flat table, retaining all sessions (even without sales) to calculate accurate conversion rates.</li>
+                </ul>
+
+                <h3>3. Exploration (Where and Who?)</h3>
+                <p>Conducted descriptive analysis with `ggplot2` in R:</p>
+                <ul>
+                    <li>The "Electronics" category overwhelmingly dominates revenue.</li>
+                    <li>The Google/CPC channel is one of the main revenue generators, confirming effectiveness of paid campaigns.</li>
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Revenue by Acquisition Channel</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The Google/CPC channel is one of the main revenue generators, confirming the effectiveness of our paid campaigns on this lever.</p>
+                    <div class="canvas-container">
+                        <canvas id="googleChannelChart"></canvas>
+                    </div>
+                </div>
+                </ul>
+
+                <div class="chart-wrapper reveal flex flex-col items-center">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Revenue by Category (Google CPC)</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The "Electronics" category overwhelmingly dominates revenue, far ahead of all others. I used the reorder() function in ggplot2 to sort the bars and make this hierarchy immediately visible.</p>
+                    <div class="w-full max-w-sm">
+                        <div class="canvas-container">
+                            <canvas id="googlePieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>4. The “Aha Moment”</h3>
+                <p>I formulated 7 hypotheses. The analysis revealed a synergy of elements for the Electronics success:</p>
+                <ul>
+                    <li>Exceptionally high conversion rate on Google/CPC for Electronics.</li>
+                    <li>Massively superior average basket for Electronics.</li>
+                    <li>Year-end seasonality creates strong purchase intent.</li>
+                </ul>
+                <p><strong>Aha Moment:</strong> Success is not chance, but a well-orchestrated customer journey where upstream efforts educate an audience, which is then converted efficiently by Google/CPC when intent is highest.</p>
+
+                <h3>5. Recommendations & Predictions</h3>
+                <p class="mb-8">Using linear regression `lm()` in R to model the relationship between investment (ad_spend) and return (revenue):</p>
+                
+                <div class="space-y-12">
+                    <div>
+                        <p class="font-bold text-white mb-2">Action 1 (Capitalize): Double Google budget/CPC for Electronics (from 10,472 to 20,944)</p>
+                        <p class="mb-4">Predicted impact: ROAS of 2.11, increasing revenue to $46,976 (+ $22,000 gain).</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">Electronics Prediction: Ad Spend vs Revenue (lm model)</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Double the Google advertising budget/CPC for the Electronics category, from 10,472 to 20,944.</p>
+                            <div class="canvas-container">
+                                <canvas id="googleRegElectronicsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-white mb-2">Action 2 (Correct): Do NOT invest further in "Home" category</p>
+                        <p class="mb-4">Every dollar invested only returns $0.85. Strategy audit needed before reinvesting.</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">Home Prediction: Ad Spend vs Revenue (lm model)</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Do NOT invest further in the "Home" category at this time. Launch an advertising strategy audit.</p>
+                            <div class="canvas-container">
+                                <canvas id="googleRegHomeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-white mb-2">Action 3 (Prevent): Pause TikTok campaigns for direct revenue</p>
+                        <p class="mb-4">No evidence of a statistical link between clicks and revenue on this channel (reallocate budget).</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">TikTok Scatter: Clicks vs Revenue (No Correlation)</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Pause TikTok campaigns targeting direct revenue.</p>
+                            <div class="canvas-container">
+                                <canvas id="googleRegTiktokChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>6. Demonstrated Technical Skills</h3>
+                <p><strong>Programming (R):</strong> Automation, predictive modeling `lm()`, `ggplot2`.<br>
+                <strong>Databases (SQL/BigQuery):</strong> Complex JOINs, REGEXP_REPLACE.<br>
+                <strong>Statistical Analysis:</strong> Descriptive (what), diagnostic (why), and predictive (what will happen) workflows.</p>
+            </div>
+        </div>
+
+        <!-- 3. Apple -->
+        <div id="proj-apple" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to all projects
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Apple: Cash Management Analysis</h2>
+            <div class="flex gap-4 mb-10">
+                <a href="https://lookerstudio.google.com/reporting/a54a9002-2730-4acf-9b92-7d43e3b098b3" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Dashboard</a>
+                <a href="https://docs.google.com/presentation/d/1pW7bjtsxdqFRyB2_KhmbrMMW3kTnmazn17v7Iv9-Q3k/edit?usp=sharing" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">View Presentation</a>
+            </div>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>1. Executive Summary</h3>
+                <p>The analysis of Apple's cash position as of September 2025 reveals exceptionally robust financial health and very comfortable short-term liquidity. Key indicators demonstrate a proven ability to cover short-term liabilities.</p>
+                <ul>
+                    <li>Current Ratio stands at 1.8.</li>
+                    <li>Working Capital Requirement (WCR) is negative at -$119,739, acting as a source of financing.</li>
+                    <li>Conclusion: Management possesses full strategic flexibility for growth initiatives or deleveraging operations.</li>
+                </ul>
+
+                <h3>2. KPIs and Short-Term Liquidity</h3>
+                <p>Total Net Sales: $1,004,592 | Net Income: $247,948 (Increased from 2024).</p>
+                <p><strong>Current Ratio:</strong> A ratio of 1.8 is considered very healthy. The company can easily cover its entire current liabilities ($165,631M) with its current assets ($281,518M). We observe a positive "scissors" dynamic where assets increase (+3.0%) while liabilities decrease (-6.1%).</p>
+
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Revenue Streams Distribution</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">iPhone represents the primary revenue driver, contributing 48.5% of Apple's total sales in FY2025.</p>
+                    <div class="canvas-container">
+                        <canvas id="appleRevenueChart"></canvas>
+                    </div>
+                </div>
+
+                <h3>3. Operating Cycle Analysis</h3>
+                <p><strong>Working Capital Requirement (WCR):</strong> A negative WCR (-$119,739) is characteristic of a dominant business model. Apple collects cash from its sales before it must pay its suppliers. The NWC is largely positive and more than covers the WCR, resulting in a structurally positive and growing Net Cash position.</p>
+
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Working Capital Profile</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">A negative WCR (-$119,739M) acts as a source of cash that funds growth, reflecting a highly efficient operating cycle.</p>
+                    <div class="canvas-container">
+                        <canvas id="appleWcrChart"></canvas>
+                    </div>
+                </div>
+
+                <h3>4. Strategic Recommendation</h3>
+                <p>The company's cash position is optimal and under no financial pressure. Decisions can be based on ROI criteria.</p>
+                <ul>
+                    <li><strong>Option 1: Massive Internal Investment in AI.</strong> Apple can afford to invest massively in internal R&D to catch up on its perceived AI deficit.</li>
+                    <li><strong>Option 2: Strategic AI Partnership.</strong> Partnering (e.g., with Gemini) provides immediate access to capabilities without significant upfront capital.</li>
+                    <li><strong>Option 3: Focus on Core Business.</strong> Continue investing in product improvement and advertising.</li>
+                </ul>
+                <p>Decision: The choice depends on Apple's risk appetite. This analysis confirms the company has the financial means to pursue any of these initiatives without compromising stability.</p>
+            </div>
+        </div>
+
+        <!-- 4. Sentiment Analysis -->
+        <div id="proj-sentiment" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to all projects
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Back Pain Sentiment Analysis</h2>
+            <div class="flex gap-4 mb-10">
+                <a href="https://docs.google.com/presentation/d/1L-1ymg9hC2vT5ZNuYLSlK9bb34-u4JNplA_Rgwi_Wow/edit?usp=sharing" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Presentation</a>
+                <a href="https://github.com/JohnBellanger/R_Programming/blob/main/Project_Back_Pain_Comment_Analysis.R" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">R Analysis Code</a>
+            </div>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>1. Context & Business Problem</h3>
+                <p>How to design a hyper-effective advertising campaign for a back pain solution? Rather than intuition, I wanted to rigorously analyze spontaneous conversations of hundreds of people on public forums (Reddit) to build a surgically precise message.</p>
+
+                <h3>2. Methodology (R Programming)</h3>
+                <p>Deployed a complete processing pipeline within R:</p>
+                <ul>
+                    <li><strong>Data Source:</strong> Scraped Reddit using Apify.</li>
+                    <li><strong>Cleaning:</strong> Used <code>tolower()</code>, <code>gsub</code> for punctuation/digits, and <code>removeWords(stopwords)</code> to isolate meaningful terms.</li>
+                    <li><strong>Analysis Tool:</strong> <code>sentimentr</code> library for sentiment scoring and <code>emotion_by()</code> to detect 8 fundamental emotions.</li>
+                </ul>
+
+                <div class="chart-wrapper reveal flex justify-center">
+                    <div class="w-full max-w-md">
+                        <p class="text-white font-mono text-sm mb-1 text-center">Detected Emotional Spectrum (Radar)</p>
+                        <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Sadness and fear are the most frequently expressed emotions by the audience.</p>
+                        <div class="canvas-container">
+                            <canvas id="sentimentRadarChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>3. Analysis & Insights: The "Aha Moment"</h3>
+                <p>The emotional palette is dominated by negativity, fear, and sadness. <strong>Key Observation:</strong> Back pain is not just a physical issue; it is an emotional suffering that impacts daily life. I tested 3 hypotheses:</p>
+                <ul>
+                    <li><strong>H1 (Emotional > Physical?):</strong> Validated. Pain is linked to sadness and fear. Our ad must speak to these emotions (Empathy).</li>
+                    <li><strong>H2 (Attack Competitors?):</strong> Invalidated. Sentiment towards medications/doctors is neutral. An aggressive strategy would be ineffective.</li>
+                <div class="chart-wrapper reveal flex justify-center">
+                    <div class="w-full max-w-sm">
+                        <p class="text-white font-mono text-sm mb-1 text-center">Competitor Sentiment Distribution</p>
+                        <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Neutrality dominates, indicating that an aggressive advertising strategy against competitors would be ill-advised.</p>
+                        <div class="canvas-container">
+                            <canvas id="sentimentCompetitorChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                    <li><strong>H3 (Ideal words?):</strong> Validated via word cloud. Words like "relief", "walk", "sleep", "finally" are what customers desire.</li>
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Top Customer Word Associations (Bigram Frequency)</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">This word cloud provides the key arguments for our future advertising promise.</p>
+                    <div class="canvas-container">
+                        <canvas id="sentimentBigramChart"></canvas>
+                    </div>
+                </div>
+                </ul>
+
+
+                <h3>4. Action Plan & Predictive Recommendations</h3>
+                <div class="space-y-12">
+                    <div>
+                        <p class="font-bold text-white mb-2">1. Immediate Recommendation: Launch an Empathetic Ad Campaign</p>
+                        <p class="mb-4">A T-test predicts this approach will generate a CTR of 2.08% vs 1.22% (+70% increase with 99.7% statistical confidence).</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">Predicted Ad CTR (T-Test comparison)</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The T-test confirms that the empathetic message significantly outperforms the generic approach.</p>
+                            <div class="canvas-container">
+                                <canvas id="sentimentCtrChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-white mb-2">2. Optimization Recommendation: Develop Reassurance Content</p>
+                        <p class="mb-4">Linear Regression predicts content focused on benefits will increase the engagement rate by +2.5 percentage points (p-value: 2.66e-08).</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">Reassurance Prediction: Number of Articles vs Engagement Increase</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Our model predicts a significant increase in engagement thanks to a targeted content strategy.</p>
+                            <div class="canvas-container">
+                                <canvas id="sentimentRegReassuranceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-white mb-2">3. Preventive Recommendation: Build a "Champions" Community</p>
+                        <p class="mb-4">K-means clustering identified high-value segments ($55-$80 average order value, 10-20 purchases/year). Target them for loyalty.</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">Customer Segmentation (K-Means Clustering)</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Clustering reveals a high-value customer segment, a priority target for our loyalty initiatives.</p>
+                            <div class="canvas-container">
+                                <canvas id="sentimentClusterChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. SEO -->
+        <div id="proj-seo" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to all projects
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">SEO Traffic Drop Diagnosis</h2>
+            <div class="flex gap-4 mb-10">
+                <a href="https://lookerstudio.google.com/reporting/d91f06e3-2d73-4b74-a7d7-b41b33f0f6b2" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Dashboard</a>
+                <a href="https://docs.google.com/presentation/d/1dlQuLKUWd3uvjdJAFIJiZ598rxhKpjEwLCo23Cd5qAs/edit?usp=sharing" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">View Presentation</a>
+            </div>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>1. Background: Why did SEO growth stop?</h3>
+                <p>As an SEO consultant for an artisanal coffee site, I was commissioned to analyze a sudden drop in organic traffic observed from May 2025. The objective: diagnose the root cause and develop an action plan to regain growth momentum.</p>
+
+                <h3>2. Methodology in Google Sheets</h3>
+                <p>Used Pivot Tables, SUMIFS/AVERAGEIFS, and Linear Regression to quantify the decline and predict impact. The descriptive analysis revealed:</p>
+                <ul>
+                    <li><strong>Where:</strong> Loss concentrated on informational blog posts.</li>
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Organic Traffic Loss by Page Type</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The loss of traffic is mainly concentrated on the blog posts informational in nature. These are the pages that attracted a large volume of users and are now in difficulty.</p>
+                    <div class="canvas-container">
+                        <canvas id="seoPageTypeChart"></canvas>
+                    </div>
+                </div>
+                    <li><strong>When:</strong> Brutal drop starting May 2025.</li>
+                    <li><strong>Who:</strong> Performance collapsed ONLY on mobile devices. Desktop remained stable.</li>
+                </ul>
+
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Traffic Volume: Mobile vs Desktop Over Time</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The drop is clear and brutal. It began in May 2025, breaking with the good momentum of previous months. Our click traffic fell by 341 in April to an average of 28 in May-June.</p>
+                    <div class="canvas-container">
+                        <canvas id="seoTrafficChart"></canvas>
+                    </div>
+                </div>
+
+                <h3>3. Diagnosing the Cause</h3>
+                <p>Tested hypotheses: internal technical changes, competitor offensives, algorithm updates.</p>
+                <p><strong>Conclusion (Confirmed):</strong> Perfect temporal correlation between the drop and Google's official update on mobile UX (Core Web Vitals). Google penalized our blog pages on mobile for insufficient usability and load times.</p>
+
+                <h3>4. Quantified Action Plan</h3>
+                <div class="space-y-12">
+                    <div>
+                        <p class="font-bold text-white mb-2">Recommendation 1: Stop the Bleed (Immediate Action, 1-2 Weeks)</p>
+                        <p class="mb-4">Fix Core Web Vitals (speed, usability) on the 5 to 10 most affected blog pages immediately. Regression modeling predicts that restoring our initial positions will help us regain over 10,000 monthly clicks.</p>
+                        <div class="chart-wrapper reveal">
+                            <p class="text-white font-mono text-sm mb-1 text-center">SEO Position vs Monthly Clicks (Linear Regression Model)</p>
+                            <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">Fix Core Web Vitals (speed, usability) on the 5 to 10 most affected blog pages immediately. Regression modeling predicts that restoring our initial positions will help us regain over 10,000 monthly clicks.</p>
+                            <div class="canvas-container">
+                                <canvas id="seoPositionClicksRegressionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-white mb-2">Recommendation 2: Aim for Excellence (Medium Term, 1-2 Months)</p>
+                        <p class="mb-4">Enrich content of strategic pages and improve overall layout. The goal is to increase mobile engagement rate from 45% to 60%, securing an audience of ~30,000 monthly users against future algorithm updates.</p>
+                    </div>
+
+                    <div>
+                        <p class="font-bold text-white mb-2">Recommendation 3: Quality Assurance (Long Term, Ongoing)</p>
+                        <p class="mb-4">Implement mobile performance monitoring via automated Looker Studio dashboards and QA checklists. This crisis cost approximately 312 clicks per day; this checklist acts as an insurance policy for a future goal of zero traffic loss.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Expatriation -->
+        <div id="proj-expat" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to all projects
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Expatriation Financial Dashboard</h2>
+            <div class="flex gap-4 mb-10">
+                <a href="https://docs.google.com/spreadsheets/d/1ee38Mne16HI8kIFJBznqXTHXF_i1l2Wn7aEFJS64AxA/edit?usp=sharing" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Google Sheets Dashboard</a>
+            </div>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>1. Context and Business Problem</h3>
+                <p>As part of a personal project simulating a move to Japan, I set a goal for financial independence. The business problem: build a reliable, automated ETL and BI reporting system capable of consolidating heterogeneous data sources to track my monthly expenses against passive income.</p>
+
+                <h3>2. Data-Driven Methodology</h3>
+                <p>Utilized Google Sheets as an ETL and BI platform:</p>
+                <ul>
+                    <li><strong>Data Sources:</strong> Monthly manual expense inputs, asset performance tracking sheets.</li>
+                    <li><strong>Web Scraping:</strong> Used <code>=IMPORTHTML</code> to scrape real-time cost-of-living data for Osaka from Numbeo.com.</li>
+                    <li><strong>Consolidation:</strong> Used <code>=IMPORTRANGE</code> to centralize data. Solved Master Data Management issues (evolving expense categories) by strictly adding new rows instead of renaming, ensuring historical data integrity.</li>
+                </ul>
+
+                <h3>3. Analysis: Complex Formulas</h3>
+                <p>Created real-time currency conversion formulas pulling data from <code>GOOGLEFINANCE</code> APIs to convert USD revenue into simulated JPY expenses. Engineered a Financial Independence KPI using <code>=SPARKLINE</code> to visually track the percentage of expenses covered by income inside the cells.</p>
+
+                <h3>4. Dashboard & Results</h3>
+                <p>The master data sheet acts as the single source of truth. With advanced filters, I can explore expenses by category, compare asset performance, and visualize the impact of inflation on my budget over time.</p>
+                
+                <div class="chart-wrapper reveal">
+                    <p class="text-white font-mono text-sm mb-1 text-center">Simulated Financial Independence (Income vs Expenses)</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The master data sheet acts as the single source of truth. With advanced filters, I can explore expenses by category, compare asset performance, and visualize the impact of inflation on my budget over time.</p>
+                    <div class="canvas-container">
+                        <canvas id="expatFinanceChart"></canvas>
+                    </div>
+                </div>
+
+                <p><strong>Technical Skills Demonstrated:</strong> Data Engineering (IMPORTRANGE, IMPORTHTML), Data Cleaning, Complex BI formulas (QUERY, SPARKLINE), and interactive Data Visualization.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Contact CTA Section -->
+    <section id="contact" class="py-24 relative overflow-hidden bg-gradient-to-b from-[#273A4C] to-bgDarker">
+        <div class="absolute inset-0 bg-blueClassic opacity-10"></div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-heading mb-6">Let's become <span class="text-cyanTech text-glow">partners</span></h2>
+            <p class="text-xl text-grayLight mb-10 max-w-2xl mx-auto">
+                If I can help you with any of your assignments, we can talk about it during a call. Let's discuss how customized data workflows can scale your clients' ROI.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://calendar.app.google/gEpmJ1dFdaxN9EJo8" target="_blank" class="btn-primary px-10 py-5 rounded shadow-lg text-lg inline-flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    Book a Call
+                </a>
+                <a href="mailto:contact@johnbellanger.com" class="btn-secondary px-10 py-5 rounded text-lg inline-flex items-center gap-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Email Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-bgDarker py-10 border-t border-grayLight/10">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <span class="font-heading text-lg text-grayLight">John Bellanger</span>
+            </div>
+            <p class="font-mono text-sm text-grayLight/50">
+                &copy; 2026 John Bellanger. Advanced Analytics Consultant . All rights reserved.
+            </p>
+            <div class="flex gap-6 mt-4 md:mt-0 font-mono text-sm">
+                <a href="https://www.linkedin.com/in/john-bellanger-67137037a" target="_blank" class="text-grayLight hover:text-cyanTech transition-colors">LinkedIn</a>
+                <a href="https://github.com/JohnBellanger" target="_blank" class="text-grayLight hover:text-cyanTech transition-colors">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // IntersectionObserver for Scroll Reveal
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px -20px -20px -20px',
+            threshold: 0.05
+        });
+
+        function initScrollReveal() {
+            // Target key text elements, sections, project cards, and charts
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            // Check if running inside an iframe (like Google Sites)
+            let isIframe = false;
+            try {
+                isIframe = window.self !== window.top;
+            } catch (e) {
+                isIframe = true; // Security error means cross-origin iframe
+            }
+            
+            revealElements.forEach(el => {
+                if (isIframe) {
+                    el.classList.add('active');
+                } else {
+                    el.classList.remove('active'); // Reset state
+                    revealObserver.observe(el);
+                }
+            });
+        }
+
+        // Logique de navigation (SPA)
+        function showHome(updateHash = true) {
+            // Hide all project details
+            const projects = document.querySelectorAll('.project-detail');
+            projects.forEach(p => p.classList.add('hidden'));
+
+            // Show main view
+            const mainView = document.getElementById('main-view');
+            if (mainView) mainView.classList.remove('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'instant' });
+
+            // Re-run scroll reveal for the homepage view
+            setTimeout(initScrollReveal, 50);
+
+            // Update URL hash
+            if (updateHash) {
+                history.pushState(null, null, ' ');
+            }
+        }
+
+        // Object to store chart instances to destroy them when view changes
+        let chartInstances = {};
+
+        function destroyAllCharts() {
+            Object.keys(chartInstances).forEach(key => {
+                if (chartInstances[key]) {
+                    chartInstances[key].destroy();
+                }
+            });
+            chartInstances = {};
+        }
+
+        function showProject(id, updateHash = true) {
+            // Hide main view
+            const mainView = document.getElementById('main-view');
+            if (mainView) mainView.classList.add('hidden');
+
+            // Hide all project details
+            const projects = document.querySelectorAll('.project-detail');
+            projects.forEach(p => p.classList.add('hidden'));
+
+            // Show current project detail
+            const targetProj = document.getElementById(id);
+            if (targetProj) {
+                targetProj.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                
+                // Initialize charts for this project
+                destroyAllCharts();
+                initProjectCharts(id);
+
+                // Re-run scroll reveal for the current project view
+                setTimeout(initScrollReveal, 50);
+            }
+
+            // Update URL hash
+            if (updateHash) {
+                window.location.hash = id;
+            }
+        }
+
+        // Parse hash and navigate
+        function handleRouting() {
+            const hash = window.location.hash;
+            if (hash && hash.startsWith('#proj-')) {
+                const id = hash.substring(1);
+                const el = document.getElementById(id);
+                if (el) {
+                    showProject(id, false);
+                    return;
+                }
+            }
+            showHome(false);
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', () => {
+            handleRouting();
+            setTimeout(initScrollReveal, 100);
+            
+            // Navbar styling on scroll
+            const navbar = document.querySelector('nav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('py-2', 'shadow-lg');
+                    navbar.classList.remove('py-0');
+                    navbar.style.background = 'rgba(39, 58, 76, 0.95)';
+                } else {
+                    navbar.classList.remove('py-2', 'shadow-lg');
+                    navbar.style.background = 'rgba(39, 58, 76, 0.85)';
+                }
+            });
+        });
+
+        // Global Chart.js styling variables matching branding
+        const chartFont = {
+            family: '"Roboto Mono", monospace',
+            size: 11
+        };
+        const chartGrid = {
+            color: 'rgba(166, 169, 176, 0.1)',
+            borderColor: 'rgba(166, 169, 176, 0.1)',
+            drawTicks: false
+        };
+        const chartTicks = {
+            color: '#A6A9B0',
+            font: chartFont
+        };
+
+        function initProjectCharts(projectId) {
+            if (projectId === 'proj-facebook') {
+                // 1. fbCityRoasChart (Toronto Anomaly Highlighted)
+                const ctxCity = document.getElementById('fbCityRoasChart');
+                if (ctxCity) {
+                    chartInstances['fbCityRoasChart'] = new Chart(ctxCity, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Vancouver', 'Montreal', 'Calgary', 'Toronto (Anomaly)'],
+                            datasets: [{
+                                label: 'ROAS by City',
+                                data: [4.2, 3.8, 3.1, 0.8],
+                                backgroundColor: [
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(250, 219, 145, 0.85)'
+                                ],
+                                borderColor: ['rgba(166, 169, 176, 0.3)', 'rgba(166, 169, 176, 0.3)', 'rgba(166, 169, 176, 0.3)', '#FADB91'],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks, title: { display: true, text: 'ROAS', color: '#A6A9B0', font: chartFont } },
+                                y: { grid: chartGrid, ticks: chartTicks }
+                            }
+                        }
+                    });
+                }
+
+                // 2. fbRoasChart (December CPA Spike and ROAS Drop Highlighted)
+                const ctxRoas = document.getElementById('fbRoasChart');
+                if (ctxRoas) {
+                    chartInstances['fbRoasChart'] = new Chart(ctxRoas, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan'],
+                            datasets: [
+                                {
+                                    label: 'CPA ($)',
+                                    type: 'bar',
+                                    data: [18, 22, 28, 35, 65, 20],
+                                    backgroundColor: [
+                                        'rgba(166, 169, 176, 0.2)',
+                                        'rgba(166, 169, 176, 0.2)',
+                                        'rgba(166, 169, 176, 0.2)',
+                                        'rgba(166, 169, 176, 0.2)',
+                                        'rgba(250, 219, 145, 0.8)',
+                                        'rgba(166, 169, 176, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(166, 169, 176, 0.3)',
+                                        'rgba(166, 169, 176, 0.3)',
+                                        'rgba(166, 169, 176, 0.3)',
+                                        'rgba(166, 169, 176, 0.3)',
+                                        '#FADB91',
+                                        'rgba(166, 169, 176, 0.3)'
+                                    ],
+                                    borderWidth: 1.5,
+                                    yAxisID: 'yCpa'
+                                },
+                                {
+                                    label: 'ROAS',
+                                    type: 'line',
+                                    data: [2.5, 2.1, 1.8, 1.3, -0.4, 1.6],
+                                    borderColor: 'rgba(166, 169, 176, 0.4)',
+                                    backgroundColor: 'transparent',
+                                    borderWidth: 2,
+                                    pointBackgroundColor: [
+                                        'rgba(166, 169, 176, 0.6)',
+                                        'rgba(166, 169, 176, 0.6)',
+                                        'rgba(166, 169, 176, 0.6)',
+                                        'rgba(166, 169, 176, 0.6)',
+                                        '#FADB91',
+                                        'rgba(166, 169, 176, 0.6)'
+                                    ],
+                                    pointBorderColor: [
+                                        'transparent',
+                                        'transparent',
+                                        'transparent',
+                                        'transparent',
+                                        '#fff',
+                                        'transparent'
+                                    ],
+                                    pointRadius: [4, 4, 4, 4, 8, 4],
+                                    pointHoverRadius: 9,
+                                    tension: 0.3,
+                                    yAxisID: 'yRoas'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                yCpa: {
+                                    position: 'left',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'CPA ($)', color: '#A6A9B0', font: chartFont }
+                                },
+                                yRoas: {
+                                    position: 'right',
+                                    grid: { drawOnChartArea: false },
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'ROAS', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 3. fbCampaignRoasChart (Underperforming Campaigns Highlighted)
+                const ctxCamp = document.getElementById('fbCampaignRoasChart');
+                if (ctxCamp) {
+                    chartInstances['fbCampaignRoasChart'] = new Chart(ctxCamp, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Winter_Cleared', 'Brand_Awareness', 'Valentines_Promo', 'Post-Holiday-Sale'],
+                            datasets: [{
+                                label: 'Campaign ROAS',
+                                data: [7.19, 3.20, 0.90, 0.50],
+                                backgroundColor: [
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(250, 219, 145, 0.8)',
+                                    'rgba(250, 219, 145, 0.8)'
+                                ],
+                                borderColor: ['rgba(166, 169, 176, 0.3)', 'rgba(166, 169, 176, 0.3)', '#FADB91', '#FADB91'],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: { grid: chartGrid, ticks: chartTicks, title: { display: true, text: 'ROAS', color: '#A6A9B0', font: chartFont } }
+                            }
+                        }
+                    });
+                }
+
+                // 4. fbAttributionChart (Over-attribution Platform Highlighted)
+                const ctxAttribution = document.getElementById('fbAttributionChart');
+                if (ctxAttribution) {
+                    chartInstances['fbAttributionChart'] = new Chart(ctxAttribution, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Post-Holiday-Sale', 'Valentines_Promo', 'Winter_Cleared', 'Brand_Awareness'],
+                            datasets: [
+                                {
+                                    label: 'Facebook Ads Manager (Over-reporting)',
+                                    data: [152, 98, 210, 45],
+                                    backgroundColor: 'rgba(250, 219, 145, 0.85)',
+                                    borderColor: '#FADB91',
+                                    borderWidth: 1.5
+                                },
+                                {
+                                    label: 'Google Analytics 4 (GA4 Baseline)',
+                                    data: [101, 65, 139, 44],
+                                    backgroundColor: 'rgba(166, 169, 176, 0.2)',
+                                    borderColor: 'rgba(166, 169, 176, 0.3)',
+                                    borderWidth: 1.5
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Conversions', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (projectId === 'proj-google') {
+                // 5. googlePieChart (Electronics Dominance Highlighted)
+                const ctxPie = document.getElementById('googlePieChart');
+                if (ctxPie) {
+                    chartInstances['googlePieChart'] = new Chart(ctxPie, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Electronics', 'Home', 'Apparel', 'Others'],
+                            datasets: [{
+                                data: [75, 15, 7, 3],
+                                backgroundColor: [
+                                    'rgba(250, 219, 145, 0.85)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.1)'
+                                ],
+                                borderColor: ['#FADB91', 'rgba(166, 169, 176, 0.3)', 'rgba(166, 169, 176, 0.3)', 'rgba(166, 169, 176, 0.2)'],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { color: '#A6A9B0', font: chartFont }
+                                }
+                            },
+                            cutout: '60%'
+                        }
+                    });
+                }
+
+                // 6. googleChannelChart (CPC Dominance Highlighted)
+                const ctxChannel = document.getElementById('googleChannelChart');
+                if (ctxChannel) {
+                    chartInstances['googleChannelChart'] = new Chart(ctxChannel, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Google/CPC', 'Organic Search', 'Direct', 'Social Media', 'Email'],
+                            datasets: [{
+                                label: 'Revenue ($)',
+                                data: [22000, 15000, 12000, 3000, 4500],
+                                backgroundColor: [
+                                    'rgba(250, 219, 145, 0.85)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)'
+                                ],
+                                borderColor: [
+                                    '#FADB91',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)'
+                                ],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: { grid: chartGrid, ticks: chartTicks, title: { display: true, text: 'Revenue ($)', color: '#A6A9B0', font: chartFont } }
+                            }
+                        }
+                    });
+                }
+
+                // 7. googleRegElectronicsChart (Electronics Spend vs Revenue Prediction Highlighted)
+                const ctxRegression = document.getElementById('googleRegElectronicsChart');
+                if (ctxRegression) {
+                    chartInstances['googleRegElectronicsChart'] = new Chart(ctxRegression, {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'scatter',
+                                    label: 'Historical Data Points',
+                                    data: [
+                                        {x: 2000, y: 4100},
+                                        {x: 4000, y: 8500},
+                                        {x: 6000, y: 12800},
+                                        {x: 8000, y: 16900},
+                                        {x: 10472, y: 22000}
+                                    ],
+                                    backgroundColor: 'rgba(93, 215, 224, 0.6)',
+                                    pointRadius: 5
+                                },
+                                {
+                                    type: 'line',
+                                    label: 'Regression Line (lm model)',
+                                    data: [
+                                        {x: 1000, y: 2100},
+                                        {x: 22000, y: 46976}
+                                    ],
+                                    borderColor: 'rgba(166, 169, 176, 0.3)',
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    fill: false,
+                                    pointRadius: 0
+                                },
+                                {
+                                    type: 'scatter',
+                                    label: 'Predicted expansion (Double spend)',
+                                    data: [
+                                        {x: 20944, y: 46976}
+                                    ],
+                                    backgroundColor: '#FADB91',
+                                    borderColor: '#FADB91',
+                                    borderWidth: 1,
+                                    pointRadius: 10,
+                                    pointStyle: 'star'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Ad Spend ($)', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Revenue ($)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 8. googleRegHomeChart (Home Poor Return Slope Highlighted)
+                const ctxHome = document.getElementById('googleRegHomeChart');
+                if (ctxHome) {
+                    chartInstances['googleRegHomeChart'] = new Chart(ctxHome, {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'scatter',
+                                    label: 'Historical Data Points',
+                                    data: [
+                                        {x: 1500, y: 1300},
+                                        {x: 3000, y: 2500},
+                                        {x: 4500, y: 3900},
+                                        {x: 6000, y: 5000},
+                                        {x: 7500, y: 6400}
+                                    ],
+                                    backgroundColor: 'rgba(93, 215, 224, 0.6)',
+                                    pointRadius: 5
+                                },
+                                {
+                                    type: 'line',
+                                    label: 'Sub-optimal Return Line (ROAS: 0.85)',
+                                    data: [
+                                        {x: 0, y: 0},
+                                        {x: 8000, y: 6800}
+                                    ],
+                                    borderColor: '#FADB91',
+                                    borderWidth: 2.5,
+                                    fill: false,
+                                    pointRadius: 0
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Ad Spend ($)', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Revenue ($)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 9. googleRegTiktokChart (TikTok Flat Trendline Highlighted)
+                const ctxTiktok = document.getElementById('googleRegTiktokChart');
+                if (ctxTiktok) {
+                    chartInstances['googleRegTiktokChart'] = new Chart(ctxTiktok, {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'scatter',
+                                    label: 'TikTok Data Points (No Correlation)',
+                                    data: [
+                                        {x: 120, y: 2500},
+                                        {x: 240, y: 1800},
+                                        {x: 350, y: 4200},
+                                        {x: 480, y: 1500},
+                                        {x: 600, y: 3800},
+                                        {x: 750, y: 2100},
+                                        {x: 900, y: 4900}
+                                    ],
+                                    backgroundColor: 'rgba(93, 215, 224, 0.6)',
+                                    pointRadius: 5
+                                },
+                                {
+                                    type: 'line',
+                                    label: 'Flat Regression Trendline',
+                                    data: [
+                                        {x: 100, y: 2900},
+                                        {x: 1000, y: 2900}
+                                    ],
+                                    borderColor: '#FADB91',
+                                    borderWidth: 2.5,
+                                    fill: false,
+                                    pointRadius: 0
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Clicks', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Revenue ($)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (projectId === 'proj-apple') {
+                // 10. appleRevenueChart (iPhone Revenue Share Highlighted)
+                const ctxAppleRev = document.getElementById('appleRevenueChart');
+                if (ctxAppleRev) {
+                    chartInstances['appleRevenueChart'] = new Chart(ctxAppleRev, {
+                        type: 'bar',
+                        data: {
+                            labels: ['iPhone', 'Services', 'Wearables/Home/Acc', 'Mac', 'iPad'],
+                            datasets: [{
+                                label: 'Revenue Share (%)',
+                                data: [48.5, 25.3, 10.2, 8.8, 7.2],
+                                backgroundColor: [
+                                    'rgba(250, 219, 145, 0.85)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)'
+                                ],
+                                borderColor: [
+                                    '#FADB91',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)'
+                                ],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Percentage (%)', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: { grid: chartGrid, ticks: chartTicks }
+                            }
+                        }
+                    });
+                }
+
+                // 11. appleWcrChart (Negative WCR Highlighted)
+                const ctxAppleWcr = document.getElementById('appleWcrChart');
+                if (ctxAppleWcr) {
+                    chartInstances['appleWcrChart'] = new Chart(ctxAppleWcr, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Current Assets', 'Current Liabilities', 'Net Working Capital', 'WCR (Negative)', 'Net Cash'],
+                            datasets: [{
+                                data: [281518, 165631, 115887, -119739, 235626],
+                                backgroundColor: [
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(250, 219, 145, 0.85)',
+                                    'rgba(166, 169, 176, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    '#FADB91',
+                                    'rgba(166, 169, 176, 0.3)'
+                                ],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: '$ Millions', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (projectId === 'proj-sentiment') {
+                // 12. sentimentRadarChart (Sadness & Fear Highlighted)
+                const ctxRadar = document.getElementById('sentimentRadarChart');
+                if (ctxRadar) {
+                    chartInstances['sentimentRadarChart'] = new Chart(ctxRadar, {
+                        type: 'radar',
+                        data: {
+                            labels: ['Sadness', 'Fear', 'Anger', 'Disgust', 'Anticipation', 'Trust', 'Joy', 'Surprise'],
+                            datasets: [{
+                                label: 'Prevalence Score',
+                                data: [8.5, 7.2, 5.0, 4.5, 3.8, 2.5, 1.0, 1.5],
+                                backgroundColor: 'rgba(166, 169, 176, 0.08)',
+                                borderColor: 'rgba(166, 169, 176, 0.4)',
+                                borderWidth: 1.5,
+                                pointBackgroundColor: [
+                                    '#FADB91',
+                                    '#FADB91',
+                                    'rgba(166, 169, 176, 0.6)',
+                                    'rgba(166, 169, 176, 0.6)',
+                                    'rgba(166, 169, 176, 0.6)',
+                                    'rgba(166, 169, 176, 0.6)',
+                                    'rgba(166, 169, 176, 0.6)',
+                                    'rgba(166, 169, 176, 0.6)'
+                                ],
+                                pointBorderColor: '#fff',
+                                pointRadius: [7, 7, 4, 4, 4, 4, 4, 4],
+                                pointHoverRadius: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                r: {
+                                    angleLines: { color: 'rgba(166, 169, 176, 0.1)' },
+                                    grid: { color: 'rgba(166, 169, 176, 0.1)' },
+                                    pointLabels: { color: '#A6A9B0', font: chartFont },
+                                    ticks: { display: false }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 13. sentimentCompetitorChart (Neutral Dominance Highlighted)
+                const ctxComp = document.getElementById('sentimentCompetitorChart');
+                if (ctxComp) {
+                    chartInstances['sentimentCompetitorChart'] = new Chart(ctxComp, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Neutral (Fact-based)', 'Negative (Frustrated)', 'Positive (Satisfied)'],
+                            datasets: [{
+                                data: [65, 20, 15],
+                                backgroundColor: [
+                                    'rgba(250, 219, 145, 0.85)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.1)'
+                                ],
+                                borderColor: ['#FADB91', 'rgba(166, 169, 176, 0.3)', 'rgba(166, 169, 176, 0.2)'],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 14. sentimentBigramChart ("back pain" Frequency Highlighted)
+                const ctxBigram = document.getElementById('sentimentBigramChart');
+                if (ctxBigram) {
+                    chartInstances['sentimentBigramChart'] = new Chart(ctxBigram, {
+                        type: 'bar',
+                        data: {
+                            labels: ['back pain', 'pain relief', 'finally sleep', 'can walk', 'lower back'],
+                            datasets: [{
+                                label: 'Frequency in posts',
+                                data: [125, 98, 85, 77, 62],
+                                backgroundColor: [
+                                    'rgba(250, 219, 145, 0.85)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)',
+                                    'rgba(166, 169, 176, 0.2)'
+                                ],
+                                borderColor: [
+                                    '#FADB91',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)',
+                                    'rgba(166, 169, 176, 0.3)'
+                                ],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            indexAxis: 'y',
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks, title: { display: true, text: 'Mentions', color: '#A6A9B0', font: chartFont } },
+                                y: { grid: chartGrid, ticks: chartTicks }
+                            }
+                        }
+                    });
+                }
+
+                // 15. sentimentCtrChart (Empathetic Ad CTR Highlighted)
+                const ctxCtr = document.getElementById('sentimentCtrChart');
+                if (ctxCtr) {
+                    chartInstances['sentimentCtrChart'] = new Chart(ctxCtr, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Intuitive Ad (Control)', 'Empathetic Ad (Test)'],
+                            datasets: [{
+                                data: [1.22, 2.08],
+                                backgroundColor: [
+                                    'rgba(166, 169, 176, 0.25)',
+                                    'rgba(250, 219, 145, 0.85)'
+                                ],
+                                borderColor: [
+                                    'rgba(166, 169, 176, 0.4)',
+                                    '#FADB91'
+                                ],
+                                borderWidth: 1.5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'CTR (%)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 16. sentimentRegReassuranceChart (Engagement Increase Point Highlighted)
+                const ctxReassurance = document.getElementById('sentimentRegReassuranceChart');
+                if (ctxReassurance) {
+                    chartInstances['sentimentRegReassuranceChart'] = new Chart(ctxReassurance, {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'scatter',
+                                    label: 'Engagement Points',
+                                    data: [
+                                        {x: 1, y: 0.5}, {x: 2, y: 1.1}, {x: 3, y: 1.4}, {x: 4, y: 2.0}
+                                    ],
+                                    backgroundColor: 'rgba(93, 215, 224, 0.6)',
+                                    pointRadius: 5
+                                },
+                                {
+                                    type: 'line',
+                                    label: 'Reassurance Model Trend',
+                                    data: [
+                                        {x: 0, y: 0}, {x: 5, y: 2.5}
+                                    ],
+                                    borderColor: 'rgba(166, 169, 176, 0.3)',
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    fill: false,
+                                    pointRadius: 0
+                                },
+                                {
+                                    type: 'scatter',
+                                    label: 'Target (5 articles: +2.5%)',
+                                    data: [
+                                        {x: 5, y: 2.5}
+                                    ],
+                                    backgroundColor: '#FADB91',
+                                    borderColor: '#FADB91',
+                                    borderWidth: 1.5,
+                                    pointRadius: 9,
+                                    pointStyle: 'rectRot'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Number of Reassurance Articles', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Engagement Rate Increase (%)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 17. sentimentClusterChart (Champions Cluster Highlighted)
+                const ctxCluster = document.getElementById('sentimentClusterChart');
+                if (ctxCluster) {
+                    chartInstances['sentimentClusterChart'] = new Chart(ctxCluster, {
+                        type: 'scatter',
+                        data: {
+                            datasets: [
+                                {
+                                    label: 'Champions Segment (Loyalty Target)',
+                                    data: [
+                                        {x: 12, y: 75}, {x: 15, y: 68}, {x: 18, y: 80}, {x: 10, y: 58}, {x: 14, y: 70}
+                                    ],
+                                    backgroundColor: '#FADB91',
+                                    pointRadius: 7,
+                                    pointHoverRadius: 9
+                                },
+                                {
+                                    label: 'Casuals',
+                                    data: [
+                                        {x: 4, y: 35}, {x: 6, y: 40}, {x: 3, y: 28}, {x: 5, y: 45}, {x: 7, y: 38}
+                                    ],
+                                    backgroundColor: 'rgba(166, 169, 176, 0.35)',
+                                    pointRadius: 5
+                                },
+                                {
+                                    label: 'Dormant',
+                                    data: [
+                                        {x: 1, y: 15}, {x: 2, y: 18}, {x: 1, y: 22}, {x: 2, y: 12}
+                                    ],
+                                    backgroundColor: 'rgba(166, 169, 176, 0.15)',
+                                    pointRadius: 5
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Orders per Year', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Average Order Value ($)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (projectId === 'proj-seo') {
+                // 18. seoPageTypeChart (Blog Post Drop Highlighted)
+                const ctxPageType = document.getElementById('seoPageTypeChart');
+                if (ctxPageType) {
+                    chartInstances['seoPageTypeChart'] = new Chart(ctxPageType, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Blog (Informational)', 'Product Pages (Transactional)'],
+                            datasets: [
+                                {
+                                    label: 'Before May 2025',
+                                    data: [13000, 5000],
+                                    backgroundColor: 'rgba(166, 169, 176, 0.2)',
+                                    borderColor: 'rgba(166, 169, 176, 0.3)',
+                                    borderWidth: 1.5
+                                },
+                                {
+                                    label: 'After May 2025',
+                                    data: [4000, 4800],
+                                    backgroundColor: [
+                                        'rgba(250, 219, 145, 0.85)',
+                                        'rgba(166, 169, 176, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        '#FADB91',
+                                        'rgba(166, 169, 176, 0.3)'
+                                    ],
+                                    borderWidth: 1.5
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: { grid: chartGrid, ticks: chartTicks, title: { display: true, text: 'Clicks', color: '#A6A9B0', font: chartFont } }
+                            }
+                        }
+                    });
+                }
+
+                // 19. seoTrafficChart (Mobile Collapse Highlighted)
+                const ctxTraffic = document.getElementById('seoTrafficChart');
+                if (ctxTraffic) {
+                    chartInstances['seoTrafficChart'] = new Chart(ctxTraffic, {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            datasets: [
+                                {
+                                    label: 'Mobile Traffic (UX penalty collapse)',
+                                    data: [12400, 12800, 13100, 12900, 7500, 5200, 4800, 4500, 4200, 4100, 4000, 3900],
+                                    borderColor: '#FADB91',
+                                    backgroundColor: 'rgba(250, 219, 145, 0.05)',
+                                    fill: true,
+                                    borderWidth: 3,
+                                    tension: 0.3
+                                },
+                                {
+                                    label: 'Desktop Traffic (Stable)',
+                                    data: [9800, 9900, 10100, 10000, 10200, 10300, 10100, 10200, 10400, 10300, 10500, 10600],
+                                    borderColor: 'rgba(166, 169, 176, 0.35)',
+                                    backgroundColor: 'transparent',
+                                    fill: false,
+                                    borderWidth: 1.5,
+                                    tension: 0.3
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: { grid: chartGrid, ticks: chartTicks },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Organic Sessions', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // 20. seoPositionClicksRegressionChart (SEO Clicks Recovery Prediction Highlighted)
+                const ctxSeoReg = document.getElementById('seoPositionClicksRegressionChart');
+                if (ctxSeoReg) {
+                    chartInstances['seoPositionClicksRegressionChart'] = new Chart(ctxSeoReg, {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'scatter',
+                                    label: 'Historical Rankings',
+                                    data: [
+                                        {x: 10, y: 300}, {x: 8, y: 800}, {x: 6, y: 1800}, {x: 4, y: 4200}, {x: 3, y: 6500}
+                                    ],
+                                    backgroundColor: 'rgba(93, 215, 224, 0.6)',
+                                    pointRadius: 5
+                                },
+                                {
+                                    type: 'line',
+                                    label: 'Ranking vs Clicks Curve',
+                                    data: [
+                                        {x: 10, y: 300}, {x: 8, y: 900}, {x: 6, y: 2200}, {x: 4, y: 4800}, {x: 2, y: 8200}, {x: 1, y: 11000}
+                                    ],
+                                    borderColor: 'rgba(166, 169, 176, 0.3)',
+                                    borderWidth: 2,
+                                    borderDash: [5, 5],
+                                    fill: false,
+                                    pointRadius: 0
+                                },
+                                {
+                                    type: 'scatter',
+                                    label: 'Target Position 1 Recovery (+10,000 clicks)',
+                                    data: [
+                                        {x: 1, y: 11000}
+                                    ],
+                                    backgroundColor: '#FADB91',
+                                    borderColor: '#FADB91',
+                                    borderWidth: 1.5,
+                                    pointRadius: 10,
+                                    pointStyle: 'star'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: {
+                                    type: 'linear',
+                                    position: 'bottom',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Organic Search Position', color: '#A6A9B0', font: chartFont }
+                                },
+                                y: {
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Monthly Clicks', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+            } else if (projectId === 'proj-expat') {
+                // 21. expatFinanceChart (Financial Independence Crossover Highlighted)
+                const ctxExpat = document.getElementById('expatFinanceChart');
+                if (ctxExpat) {
+                    chartInstances['expatFinanceChart'] = new Chart(ctxExpat, {
+                        data: {
+                            datasets: [
+                                {
+                                    type: 'line',
+                                    label: 'Passive Income',
+                                    data: [1200, 1500, 1900, 2300, 2800, 3100, 3400, 3800, 4200],
+                                    borderColor: 'rgba(166, 169, 176, 0.4)',
+                                    backgroundColor: 'transparent',
+                                    fill: false,
+                                    borderWidth: 2,
+                                    tension: 0.2
+                                },
+                                {
+                                    type: 'line',
+                                    label: 'Simulated Osaka Expenses (USD)',
+                                    data: [2200, 2220, 2250, 2270, 2300, 2320, 2350, 2370, 2400],
+                                    borderColor: 'rgba(166, 169, 176, 0.2)',
+                                    backgroundColor: 'transparent',
+                                    borderWidth: 1.5,
+                                    borderDash: [5, 5],
+                                    tension: 0.1
+                                },
+                                {
+                                    type: 'scatter',
+                                    label: 'Financial Independence Crossover (M18)',
+                                    data: [
+                                        {x: 'M18', y: 2300}
+                                    ],
+                                    backgroundColor: '#FADB91',
+                                    borderColor: '#FADB91',
+                                    borderWidth: 1,
+                                    pointRadius: 9,
+                                    pointStyle: 'star'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { labels: { color: '#A6A9B0', font: chartFont } }
+                            },
+                            scales: {
+                                x: { 
+                                    type: 'category',
+                                    labels: ['M1', 'M6', 'M12', 'M18', 'M24', 'M30', 'M36', 'M42', 'M48'],
+                                    grid: chartGrid, 
+                                    ticks: chartTicks 
+                                },
+                                y: {
+                                    type: 'linear',
+                                    grid: chartGrid,
+                                    ticks: chartTicks,
+                                    title: { display: true, text: 'Value ($)', color: '#A6A9B0', font: chartFont }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>

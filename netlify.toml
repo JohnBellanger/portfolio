@@ -1,0 +1,15 @@
+# Netlify Configuration File
+# Documentation: https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # Le dossier contenant les fichiers statiques à publier (racine du projet ici)
+  publish = "."
+
+# En-têtes HTTP personnalisés pour améliorer la sécurité et les performances
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
