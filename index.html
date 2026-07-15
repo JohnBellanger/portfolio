@@ -836,6 +836,47 @@
             </div>
         </div>
 
+        <!-- Privacy Policy -->
+        <div id="privacy" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
+            <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
+                &larr; Back to home
+            </button>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Privacy Policy</h2>
+            <p class="font-mono text-sm text-grayLight/50 mb-10">Last Updated: July 15, 2026</p>
+
+            <div class="content-block reveal text-grayLight">
+                <h3>Introduction</h3>
+                <p>Welcome to the portfolio website of John Bellanger ("we," "our," or "us"). We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website, in compliance with applicable regulations, including the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA).</p>
+
+                <h3>Data Collection & Processing</h3>
+                <p>We process data with a privacy-first mindset. The only data processed is as follows:</p>
+                <ul>
+                    <li><strong>Anonymized Analytics:</strong> We use Google Tag Manager (GTM) and Google Analytics 4 (GA4) to collect aggregate statistical data about site usage (such as page views, time spent, and referral sources). IP address anonymization is strictly enabled, Google Signals are disabled, and data sharing features for advertising are turned off. We do not use advertising pixels (such as Meta, LinkedIn, etc.) or collect personally identifiable information (PII) through tracking.</li>
+                    <li><strong>Contact Form Information:</strong> If you voluntarily contact us using the contact form or email, we collect your name, email address, and the content of your message. This data is only used to respond to your inquiry and is never shared, sold, or rented to third parties.</li>
+                </ul>
+
+                <h3>Cookies and Tracking Technology</h3>
+                <p>Our website utilizes cookies for analytics purposes. Cookies are small files stored on your device that help us analyze web traffic. You can configure your browser to reject cookies or alert you when a cookie is sent. However, doing so will not affect your user experience on this site.</p>
+
+                <h3>Your Rights (CCPA / CPRA & International Visitors)</h3>
+                <p>If you are a resident of California or access the site from jurisdictions with privacy regulations, you have specific rights regarding your personal information under the CCPA/CPRA, including:</p>
+                <ul>
+                    <li><strong>Right to Know:</strong> The right to request disclosure of the personal data collected, used, or shared.</li>
+                    <li><strong>Right to Delete:</strong> The right to request the deletion of personal data collected from you.</li>
+                    <li><strong>Right to Correct:</strong> The right to request correction of inaccurate personal data.</li>
+                    <li><strong>Right to Opt-Out:</strong> Since we do not sell or share your personal information with third parties for cross-context behavioral advertising, no opt-out is necessary.</li>
+                </ul>
+                <p>To exercise any of these rights, please contact us at <a href="mailto:contact@johnbellanger.com" class="text-cyanTech hover:underline">contact@johnbellanger.com</a>. We will respond to verified requests in accordance with applicable law.</p>
+
+                <h3>Data Retention & Security</h3>
+                <p>Contact inquiries are kept only as long as necessary to address your request. We implement standard, industry-recognized security measures to protect the personal information submitted to us.</p>
+
+                <h3>Contact Information</h3>
+                <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+                <p class="font-mono text-white">Email: <a href="mailto:contact@johnbellanger.com" class="text-cyanTech hover:underline">contact@johnbellanger.com</a></p>
+            </div>
+        </div>
+
     </div>
 
     <!-- Contact CTA Section -->
@@ -869,6 +910,7 @@
                 &copy; 2026 John Bellanger. Advanced Analytics Consultant . All rights reserved.
             </p>
             <div class="flex gap-6 mt-4 md:mt-0 font-mono text-sm">
+                <a href="#privacy" onclick="showProject('privacy')" class="text-grayLight hover:text-cyanTech transition-colors">Privacy Policy</a>
                 <a href="https://www.linkedin.com/in/john-bellanger-67137037a" target="_blank" class="text-grayLight hover:text-cyanTech transition-colors">LinkedIn</a>
                 <a href="https://github.com/JohnBellanger" target="_blank" class="text-grayLight hover:text-cyanTech transition-colors">GitHub</a>
             </div>
@@ -979,6 +1021,10 @@
         // Parse hash and navigate
         function handleRouting() {
             const hash = window.location.hash;
+            if (hash === '#privacy') {
+                showProject('privacy', false);
+                return;
+            }
             if (hash && hash.startsWith('#proj-')) {
                 const id = hash.substring(1);
                 const el = document.getElementById(id);
