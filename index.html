@@ -271,7 +271,7 @@
                                 <span class="skill-badge px-3 py-1 rounded text-xs">Google Slides</span>
                                 <span class="skill-badge px-3 py-1 rounded text-xs">Google Analytics 4</span>
                                 <span class="skill-badge px-3 py-1 rounded text-xs">Google Search Console</span>
-                                <span class="skill-badge px-3 py-1 rounded text-xs">Facebook Ads</span>
+                                <span class="skill-badge px-3 py-1 rounded text-xs">Meta Ads</span>
                                 <span class="skill-badge px-3 py-1 rounded text-xs">Google Ads</span>
                             </div>
                         </div>
@@ -303,11 +303,11 @@
                     <!-- Cards -->
                     <div class="project-card rounded-xl overflow-hidden flex flex-col h-full cursor-pointer group reveal" onclick="showProject('proj-facebook')">
                         <div class="h-48 overflow-hidden relative border-b border-white/5">
-                            <img src="fb_ads_concept.png" alt="Facebook Ads Analysis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <img src="fb_ads_concept.png" alt="Meta Ads Analysis" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                             <div class="absolute inset-0 bg-gradient-to-t from-bgDarker via-transparent to-transparent opacity-40"></div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-cyanTech font-mono text-xs mb-2">Facebook Ads</div>
+                            <div class="text-cyanTech font-mono text-xs mb-2">Meta Ads</div>
                             <h3 class="text-2xl text-white font-heading mb-3 transition-colors group-hover:text-cyanTech">Negative ROAS Analysis</h3>
                             <p class="text-sm text-grayLight mb-6 flex-grow">Understanding why increasing ad spending was not translating into revenue. Fixing attribution gaps and strategic timing.</p>
                             <button class="btn-secondary w-full py-2 rounded text-sm uppercase tracking-wider">Go see deep dive</button>
@@ -385,12 +385,12 @@
 
     <div id="project-views" class="pt-24 pb-20">
 
-        <!-- 1. Facebook Ads -->
+        <!-- 1. Meta Ads -->
         <div id="proj-facebook" class="project-detail hidden max-w-5xl mx-auto px-4 sm:px-6">
             <button onclick="showHome()" class="text-cyanTech font-mono text-sm mb-8 hover:text-white transition-colors flex items-center gap-2">
                 &larr; Back to all projects
             </button>
-            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Facebook Ads Campaign Performance</h2>
+            <h2 class="text-4xl md:text-5xl font-heading text-white mb-4">Meta Ads Campaign Performance</h2>
             <div class="flex flex-wrap gap-4 mb-10">
                 <a href="https://lookerstudio.google.com/reporting/1120487c-c49e-4618-9739-b5d790e23927" target="_blank" class="btn-primary px-4 py-2 rounded text-xs">View Dashboard</a>
                 <a href="https://docs.google.com/presentation/d/1yxA_oKfSm5SF78337sbnSEwbaiwz8KtdCGxRAx8Km24/edit?usp=sharing" target="_blank" class="btn-secondary px-4 py-2 rounded text-xs">View Presentation</a>
@@ -399,15 +399,15 @@
 
             <div class="content-block reveal text-grayLight">
                 <h3>1. Context and Objective of the Stakeholder</h3>
-                <p>The objective of this mission, at the request of my stakeholder, was to understand why increasing advertising spending on Facebook Ads was not translating into equivalent growth in the company's overall revenue. The stakeholder noted that profitability appeared to be at risk, particularly in certain quarters.</p>
-                <p>The hypothesis raised was that traffic from Facebook Ads was of low quality, leading to overestimation of conversions by the platform itself, a low conversion rate on the site, and a low value per customer.</p>
+                <p>The objective of this mission, at the request of my stakeholder, was to understand why increasing advertising spending on Meta Ads was not translating into equivalent growth in the company's overall revenue. The stakeholder noted that profitability appeared to be at risk, particularly in certain quarters.</p>
+                <p>The hypothesis raised was that traffic from Meta Ads was of low quality, leading to overestimation of conversions by the platform itself, a low conversion rate on the site, and a low value per customer.</p>
 
                 <h3>2. The Problem</h3>
-                <p>The analysis confirmed the stakeholder's concerns: an overall low ROAS (Return On Ad Spend) for Facebook traffic, and a conversion rate for this same channel that is the lowest of all acquisition channels. A particularly negative ROAS was observed in December, signaling a major underperformance.</p>
+                <p>The analysis confirmed the stakeholder's concerns: an overall low ROAS (Return On Ad Spend) for Meta Ads traffic, and a conversion rate for this same channel that is the lowest of all acquisition channels. A particularly negative ROAS was observed in December, signaling a major underperformance.</p>
                 
                 <div class="chart-wrapper reveal">
                     <p class="text-white font-mono text-sm mb-1 text-center">ROAS vs CPA Trajectory</p>
-                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The analysis confirmed the stakeholder's concerns: an overall low ROAS for Facebook traffic, and a conversion rate for this same channel that is the lowest of all acquisition channels. A particularly negative ROAS was observed in December, signaling a major underperformance.</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">The analysis confirmed the stakeholder's concerns: an overall low ROAS for Meta Ads traffic, and a conversion rate for this same channel that is the lowest of all acquisition channels. A particularly negative ROAS was observed in December, signaling a major underperformance.</p>
                     <div class="canvas-container">
                         <canvas id="fbRoasChart"></canvas>
                     </div>
@@ -416,7 +416,7 @@
                 <h3>3. The Method of Analysis</h3>
                 <p>I adopted a rigorous methodology in several phases to respond to this problem:</p>
                 <ul>
-                    <li><strong>Data cleaning:</strong> I duplicated the raw tables from Facebook Ads and Google Analytics 4 to work on copies on BigQuery. I then standardized date formats, handled missing values, and converted expense columns to a numeric format. Used LOWER() and TRIM() to ensure naming consistency.</li>
+                    <li><strong>Data cleaning:</strong> I duplicated the raw tables from Meta Ads and Google Analytics 4 to work on copies on BigQuery. I then standardized date formats, handled missing values, and converted expense columns to a numeric format. Used LOWER() and TRIM() to ensure naming consistency.</li>
                     <li><strong>Analyse Descriptive:</strong> I created a flat table by joining the cleaned data. Explored data to find:</li>
                     <li><em>Location of the anomaly:</em> Toronto in Canada was particularly problematic in terms of profitability.</li>
                 <div class="chart-wrapper reveal">
@@ -435,7 +435,7 @@
                         <canvas id="fbCampaignRoasChart"></canvas>
                     </div>
                 </div>
-                    <li><em>Attribution:</em> Facebook's attribution model overestimated its conversions, attributing 51% more to itself than GA4 did.</li>
+                    <li><em>Attribution:</em> Meta's attribution model overestimated its conversions, attributing 51% more to itself than GA4 did.</li>
                 </ul>
 
                 <h3>4. Diagnostic Analysis</h3>
@@ -455,7 +455,7 @@
 
                 <div class="chart-wrapper reveal">
                     <p class="text-white font-mono text-sm mb-1 text-center">Attribution Gap: FB vs GA4 Conversions</p>
-                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">I quantified Facebook's contribution to the total acquisition and measured the attribution gap. I found that Facebook's attribution model overestimated its conversions, attributing 51% more to itself than GA4.</p>
+                    <p class="text-grayLight/70 font-sans text-xs mb-4 text-center max-w-lg mx-auto leading-relaxed">I quantified Meta's contribution to the total acquisition and measured the attribution gap. I found that Meta's attribution model overestimated its conversions, attributing 51% more to itself than GA4.</p>
                     <div class="canvas-container">
                         <canvas id="fbAttributionChart"></canvas>
                     </div>
@@ -471,7 +471,7 @@
 
                 <h3>7. Demonstrated Technical Skills</h3>
                 <ul>
-                    <li><strong>Databases & SQL Logic:</strong> Joined Facebook Ads and GA4 to create a flat table, ensuring data standardization.</li>
+                    <li><strong>Databases & SQL Logic:</strong> Joined Meta Ads and GA4 to create a flat table, ensuring data standardization.</li>
                     <li><strong>Statistical & Predictive Analysis:</strong> Scenario modeling to provide a quantifiable forecast ($3,240 additional revenue).</li>
                     <li><strong>Data visualization:</strong> Used Google Sheets to explore anomalies and support conclusions.</li>
                 </ul>
@@ -1245,7 +1245,7 @@
                             labels: ['Post-Holiday-Sale', 'Valentines_Promo', 'Winter_Cleared', 'Brand_Awareness'],
                             datasets: [
                                 {
-                                    label: 'Facebook Ads Manager (Over-reporting)',
+                                    label: 'Meta Ads Manager (Over-reporting)',
                                     data: [152, 98, 210, 45],
                                     backgroundColor: 'rgba(250, 219, 145, 0.85)',
                                     borderColor: '#FADB91',
